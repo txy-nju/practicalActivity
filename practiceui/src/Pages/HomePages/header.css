@@ -1,0 +1,31 @@
+.header {
+    height: 300px;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    /* 使用绝对定位确保完全占满屏幕宽度 */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* 背景图片 + 渐变叠加 */
+    background-image: 
+        linear-gradient(135deg, rgba(226, 74, 74, 0.7), rgba(255, 255, 255, 0.7)),
+        url('../../assets/headerBackground.png');
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.header h1 {
+    color: white;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+}

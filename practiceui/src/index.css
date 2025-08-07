@@ -66,3 +66,21 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* 防止水平滚动条 */
+}
+
+#root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
