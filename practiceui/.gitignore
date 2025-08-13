@@ -1,0 +1,73 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ==================== 大文件排除 ====================
+
+# 视频文件 - 排除所有视频
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+*.mkv
+
+# 大图片文件 - 根据需要调整
+*.psd
+*.ai
+*.eps
+
+# 音频文件
+*.mp3
+*.wav
+*.flac
+*.aac
+
+# 压缩文件
+*.zip
+*.rar
+*.7z
+*.tar.gz
+
+# 大文档文件（可选，根据需要）
+# *.pdf
+# *.doc
+# *.docx
+
+# 特定的大文件目录
+public/assets/large/
+public/assets/small/vedios/
+public/assets/small/videos/
+
+# 保留小的缩略图和文档
+!public/assets/small/thumbnails/
+!public/assets/small/documents/
+!public/assets/small/banners/
+
+# 临时文件
+.tmp/
+temp/
+*.tmp
+*.temp

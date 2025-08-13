@@ -1,0 +1,149 @@
+/* 红色文化主题艺术字体样式 */
+.header {
+    height: 300px;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: 
+        linear-gradient(135deg, rgba(226, 74, 74, 0.7), rgba(255, 255, 255, 0.7)),
+        url('../../assets/headerBackground.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.header h1 {
+    font-family: 'SimHei', 'Microsoft YaHei', 'STHeiti', sans-serif;
+    font-size: 4rem;
+    font-weight: 900;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+    
+    /* 红色文化主题渐变 */
+    background: linear-gradient(
+        45deg,
+        #d4001a,  /* 中国红 */
+        #ff4757,  /* 亮红色 */
+        #ffa502,  /* 金黄色 */
+        #d4001a   /* 回到中国红 */
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    /* 金边描边效果 */
+    -webkit-text-stroke: 1px #ffa502;
+    text-stroke: 1px #ffa502;
+    
+    /* 立体阴影效果 */
+    text-shadow: 
+        1px 1px 0 #b71c1c,
+        2px 2px 0 #a31515,
+        3px 3px 0 #8f0e0e,
+        4px 4px 0 #7b0808,
+        5px 5px 2px rgba(139, 69, 19, 0.4),
+        6px 6px 4px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(255, 165, 2, 0.6);
+    
+    /* 字间距 */
+    letter-spacing: 3px;
+    
+    /* 动画效果 */
+    animation: redCultureGlow 3s ease-in-out infinite;
+    
+    /* 悬停变换 */
+    transition: all 0.5s ease;
+}
+
+.header h1:hover {
+    transform: scale(1.05) translateY(-5px);
+    filter: brightness(1.2);
+}
+
+/* 红色文化发光动画 */
+@keyframes redCultureGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+        text-shadow: 
+            1px 1px 0 #b71c1c,
+            2px 2px 0 #a31515,
+            3px 3px 0 #8f0e0e,
+            4px 4px 0 #7b0808,
+            5px 5px 2px rgba(139, 69, 19, 0.4),
+            6px 6px 4px rgba(0, 0, 0, 0.3),
+            0 0 10px rgba(255, 165, 2, 0.6);
+    }
+    50% {
+        background-position: 100% 50%;
+        text-shadow: 
+            1px 1px 0 #b71c1c,
+            2px 2px 0 #a31515,
+            3px 3px 0 #8f0e0e,
+            4px 4px 0 #7b0808,
+            5px 5px 2px rgba(139, 69, 19, 0.6),
+            6px 6px 4px rgba(0, 0, 0, 0.4),
+            0 0 20px rgba(255, 165, 2, 0.8),
+            0 0 30px rgba(212, 0, 26, 0.4);
+    }
+}
+
+/* 添加装饰性元素 */
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 165, 2, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(212, 0, 26, 0.1) 0%, transparent 50%);
+    z-index: 1;
+}
+
+/* 添加五角星装饰 */
+.header::after {
+    content: '★';
+    position: absolute;
+    color: #ffa502;
+    font-size: 2rem;
+    top: 20px;
+    right: 50px;
+    opacity: 0.7;
+    animation: twinkle 2s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2.8rem;
+        letter-spacing: 2px;
+        -webkit-text-stroke: 0.5px #ffa502;
+    }
+    
+    .header::after {
+        font-size: 1.5rem;
+        top: 15px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 2.2rem;
+        letter-spacing: 1px;
+    }
+}

@@ -1,0 +1,28 @@
+.homepage {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* 防止水平滚动 */
+}
+
+.main-content {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.main-content h2 {
+    color: #333;
+    margin: 20px 0;
+    font-size: 2rem;
+}
+
+.main-content p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 1.1rem;
+}
