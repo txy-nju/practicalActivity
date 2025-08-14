@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './DetailTemplate.css';
 
 function DetailTemplate({ 
@@ -16,7 +17,8 @@ function DetailTemplate({
     const [activeTab, setActiveTab] = useState('content');
     const [selectedPhoto, setSelectedPhoto] = useState(null);
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-    const [currentVersionType, setCurrentVersionType] = useState('preview'); // 新增：当前版本类型
+    const [currentVersionType, setCurrentVersionType] = useState('preview');
+    const navigate = useNavigate(); // 添加导航钩子
 
     // 格式化时间
     const formatTime = (timeString) => {
@@ -64,6 +66,16 @@ function DetailTemplate({
 
     return (
         <div className="detail-template">
+            {/* 添加返回按钮 */}
+            <div className="navigation-header">
+                <button 
+                    className="back-btn"
+                    onClick={() => navigate('/')}
+                >
+                    ← 返回首页
+                </button>
+            </div>
+            
             {/* 头部横幅 */}
             <div className="detail-banner">
                 <img 

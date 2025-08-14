@@ -1,37 +1,44 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './rollingDisplay.css';
 import weiman from '../../assets/rollingPicture/weiman.webp';
 import lunxian from '../../assets/rollingPicture/lunxian.webp';
 import jingyvganbu from '../../assets/rollingPicture/jingyvganbu.jpg';
 import jingyvlinyuan from '../../assets/rollingPicture/jingyvlinyuan.webp';
+
 function RollingDisplay() {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const navigate = useNavigate(); // React Router 导航钩子
     
-    // 轮播图片数据
+    // 轮播图片数据 - 添加跳转路径
     const slides = [
         {
             id: 1,
             image: weiman,
             title: '伪满皇宫',
-            subtitle: '历史记忆'
+            subtitle: '历史记忆',
+            path: '/detail/changchun/weiman' // 添加跳转路径
         },
         {
             id: 2,
             image: lunxian,
             title: '东北沦陷史陈列馆',
-            subtitle: '血泪的教训'
+            subtitle: '血泪的教训',
+            path: '/detail/changchun/lunxian' // 添加跳转路径
         },
         {
             id: 3,
             image: jingyvganbu,
             title: '杨靖宇干部学院',
-            subtitle: '杨靖宇将军的生平'
+            subtitle: '杨靖宇将军的生平',
+            path: '/detail/tonghua/jingyvganbu' // 添加跳转路径
         },
         {
             id: 4,
             image: jingyvlinyuan,
-            title: '杨靖宇',
-            subtitle: '缅怀革命先烈'
+            title: '靖宇陵园',
+            subtitle: '缅怀革命先烈',
+            path: null // 暂时不跳转
         }
     ];
 
@@ -62,15 +69,24 @@ function RollingDisplay() {
         class: getSlideClass(index)
     })));
 
+    // 点击轮播图跳转到详情页
+    const handleSlideClick = (slide) => {
+        if (slide.path) {
+            navigate(slide.path);
+        }
+    };
+
     const goToSlide = (index) => {
         setCurrentIndex(index);
     };
 
-    const prevSlide = () => {
+    const prevSlide = (e) => {
+        e.stopPropagation(); // 阻止事件冒泡
         setCurrentIndex(currentIndex === 0 ? slides.length - 1 : currentIndex - 1);
     };
 
-    const nextSlide = () => {
+    const nextSlide = (e) => {
+        e.stopPropagation(); // 阻止事件冒泡
         setCurrentIndex(currentIndex === slides.length - 1 ? 0 : currentIndex + 1);
     };
 
@@ -82,18 +98,27 @@ function RollingDisplay() {
                         key={slide.id}
                         className={`slide ${getSlideClass(index)}`}
                         style={{ 
-                            backgroundImage: `url(${slide.image})`
+                            backgroundImage: `url(${slide.image})`,
+                            cursor: slide.path ? 'pointer' : 'default' // 根据是否有路径显示不同指针
                         }}
+                        onClick={() => handleSlideClick(slide)} // 添加点击事件
                     >
                         <div className="slide-content">
                             <h2>{slide.title}</h2>
                             <p>{slide.subtitle}</p>
+                            {/* 添加视觉提示，只对有路径的图片显示 */}
+                            {slide.path && (
+                                <div className="click-hint">
+                                    <span>点击查看详情</span>
+                                    <span className="arrow">→</span>
+                                </div>
+                            )}
                         </div>
                     </div>
                 ))}
             </div>
 
-            {/* 导航箭头 */}
+            {/* 导航箭头 - 添加事件阻止冒泡 */}
             <button className="nav-btn prev-btn" onClick={prevSlide}>
                 <span>‹</span>
             </button>
@@ -107,7 +132,10 @@ function RollingDisplay() {
                     <button
                         key={index}
                         className={`indicator ${index === currentIndex ? 'active' : ''}`}
-                        onClick={() => goToSlide(index)}
+                        onClick={(e) => {
+                            e.stopPropagation(); // 阻止事件冒泡
+                            goToSlide(index);
+                        }}
                     />
                 ))}
             </div>

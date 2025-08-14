@@ -96,7 +96,7 @@ function WeiMan() {
         videos: [
             {
                 title: "伪满皇宫历史介绍",
-                thumbnailUrl: getAssetUrl("/thumbnails/changchun/weiman/videos/weimanIntro2-thumb.jpg"),
+                thumbnailUrl: getAssetUrl("/thumbnails/changchun/weiman/weimanIntro2-thumb.jpg"),
                 description: "深入介绍伪满皇宫的历史背景、建筑特色和教育意义，全面了解这座历史遗址的重要价值。",
                 versions: [
                     {
@@ -124,7 +124,7 @@ function WeiMan() {
             },
             {
                 title: "实践活动记录",
-                thumbnailUrl: getAssetUrl("/thumbnails/changchun/weiman/practicalMakePreview-thumb.jpg"),
+                thumbnailUrl: getAssetUrl("/thumbnails/changchun/weiman/practicalMake-thumb.jpg"),
                 description: "记录了实践小组在伪满皇宫博物院的实地调研和学习活动，展现了同学们深入了解历史的过程。",
                 versions: [
                     {
@@ -147,6 +147,34 @@ function WeiMan() {
                         quality: "1080p",
                         downloadOnly: true,
                         description: "完整版实践活动记录，详细展现了整个调研过程和学习心得，建议下载观看"
+                    }
+                ]
+            },
+            {
+                title: "实践活动记录二",
+                thumbnailUrl: getAssetUrl("/thumbnails/changchun/weiman/practicalMake2-thumb.png"),
+                description: "续篇记录了实践小组在伪满皇宫博物院的深入研究和讨论活动，进一步展现历史学习的深度。",
+                versions: [
+                    {
+                        type: "preview",
+                        title: "预览版（在线观看）",
+                        fileName: "practicalMake2-preview.mp4",
+                        url: getAssetUrl("/videos/changchun/weiman/practicalMake2-preview.mp4"),
+                        duration: "04:15",
+                        size: 8388608, // 8MB
+                        quality: "720p",
+                        description: "4分15秒实践活动续篇精彩片段，展示更深入的历史探讨"
+                    },
+                    {
+                        type: "full",
+                        title: "完整版（下载观看）",
+                        fileName: "practicalMake2-full.mp4",
+                        url: getAssetUrl("/videos/changchun/weiman/practicalMake2-full.mp4", "large"),
+                        duration: "25:40",
+                        size: 104857600, // 100MB
+                        quality: "1080p",
+                        downloadOnly: true,
+                        description: "完整版实践活动记录续篇，深度记录学习讨论和感悟分享，建议下载观看"
                     }
                 ]
             }

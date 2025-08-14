@@ -1,3 +1,61 @@
+/* 导航头部 */
+.navigation-header {
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #d32f2f 0%, #c62828 50%, #b71c1c 100%);
+    border-bottom: 2px solid #ffb74d;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(211, 47, 47, 0.3);
+}
+
+.back-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    border: 2px solid #ffd54f;
+    padding: 12px 24px;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.back-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.back-btn:hover::before {
+    left: 100%;
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #ff5722 0%, #d84315 100%);
+    border-color: #ffcc02;
+    transform: translateX(-5px) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 87, 34, 0.4);
+}
+
+.back-btn:active {
+    transform: translateX(-3px) translateY(0);
+    box-shadow: 0 4px 15px rgba(255, 87, 34, 0.3);
+}
+
 .detail-template {
     min-height: 100vh;
     background: #f8f9fa;
@@ -502,6 +560,25 @@
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+    /* 移动端导航头部适配 */
+    .navigation-header {
+        padding: 12px 15px;
+        background: linear-gradient(135deg, #d32f2f 0%, #c62828 50%, #b71c1c 100%);
+    }
+    
+    .back-btn {
+        padding: 10px 18px;
+        font-size: 13px;
+        gap: 8px;
+        border-radius: 20px;
+        box-shadow: 0 3px 12px rgba(255, 107, 107, 0.3);
+    }
+    
+    .back-btn:hover {
+        transform: translateX(-3px) translateY(-1px);
+        box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+    }
+    
     .detail-banner {
         height: 300px;
     }
