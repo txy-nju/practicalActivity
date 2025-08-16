@@ -8,6 +8,20 @@
     z-index: 100;
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 8px rgba(211, 47, 47, 0.3);
+    /* 导航头部进入动画 */
+    animation: headerSlideDown 0.6s ease-out both;
+}
+
+/* 导航头部进入动画 */
+@keyframes headerSlideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .back-btn {
@@ -59,6 +73,38 @@
 .detail-template {
     min-height: 100vh;
     background: #f8f9fa;
+    /* 页面进入动画 */
+    animation: pageEnter 0.6s ease-out;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 页面进入动画关键帧 */
+@keyframes pageEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 页面退出动画类 */
+.detail-template.page-exit {
+    animation: pageExit 0.4s ease-in forwards;
+}
+
+@keyframes pageExit {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.98);
+    }
 }
 
 /* 头部横幅 */
@@ -71,6 +117,20 @@
     align-items: center;
     justify-content: center;
     background-color: #f5f5f5;
+    /* 横幅进入动画 */
+    animation: bannerSlideIn 0.8s ease-out 0.1s both;
+}
+
+/* 横幅进入动画 */
+@keyframes bannerSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .banner-image {
@@ -139,6 +199,20 @@
     border-bottom: 2px solid #e9ecef;
     padding: 0 20px;
     overflow-x: auto;
+    /* 标签栏进入动画 */
+    animation: tabsSlideIn 0.6s ease-out 0.3s both;
+}
+
+/* 标签栏进入动画 */
+@keyframes tabsSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .tab-btn {
@@ -170,6 +244,20 @@
     margin: 0 20px;
     border-radius: 0 0 12px 12px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    /* 内容区域进入动画 */
+    animation: contentFadeIn 0.8s ease-out 0.4s both;
+}
+
+/* 内容区域进入动画 */
+@keyframes contentFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .content-wrapper {
@@ -183,6 +271,28 @@
     line-height: 1.8;
     font-size: 16px;
     color: #333;
+    /* 内容切换动画 */
+    animation: contentTabFadeIn 0.6s ease-out;
+}
+
+/* 内容标签切换动画 */
+@keyframes contentTabFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 为所有标签内容添加切换动画 */
+.content-section,
+.documents-section,
+.photos-section,
+.videos-section {
+    animation: contentTabFadeIn 0.6s ease-out;
 }
 
 .text-content h1, .text-content h2, .text-content h3 {
@@ -216,6 +326,29 @@
     display: flex;
     align-items: center;
     gap: 15px;
+    /* 文档卡片进入动画 */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cardFadeInUp 0.6s ease-out forwards;
+}
+
+/* 文档卡片交错动画 */
+.document-card:nth-child(1) { animation-delay: 0.1s; }
+.document-card:nth-child(2) { animation-delay: 0.2s; }
+.document-card:nth-child(3) { animation-delay: 0.3s; }
+.document-card:nth-child(4) { animation-delay: 0.4s; }
+.document-card:nth-child(5) { animation-delay: 0.5s; }
+.document-card:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes cardFadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .document-card:hover {
@@ -314,6 +447,43 @@
     aspect-ratio: 16/10; /* 调整宽高比 */
     background: #f8f9fa;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* 照片项目进入动画 */
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    animation: photoFadeInScale 0.7s ease-out forwards;
+}
+
+/* 照片项目交错动画 */
+.photo-item:nth-child(1) { animation-delay: 0.1s; }
+.photo-item:nth-child(2) { animation-delay: 0.15s; }
+.photo-item:nth-child(3) { animation-delay: 0.2s; }
+.photo-item:nth-child(4) { animation-delay: 0.25s; }
+.photo-item:nth-child(5) { animation-delay: 0.3s; }
+.photo-item:nth-child(6) { animation-delay: 0.35s; }
+.photo-item:nth-child(7) { animation-delay: 0.4s; }
+.photo-item:nth-child(8) { animation-delay: 0.45s; }
+.photo-item:nth-child(9) { animation-delay: 0.5s; }
+.photo-item:nth-child(10) { animation-delay: 0.55s; }
+.photo-item:nth-child(11) { animation-delay: 0.6s; }
+.photo-item:nth-child(12) { animation-delay: 0.65s; }
+.photo-item:nth-child(13) { animation-delay: 0.7s; }
+.photo-item:nth-child(14) { animation-delay: 0.75s; }
+.photo-item:nth-child(15) { animation-delay: 0.8s; }
+.photo-item:nth-child(16) { animation-delay: 0.85s; }
+.photo-item:nth-child(17) { animation-delay: 0.9s; }
+.photo-item:nth-child(18) { animation-delay: 0.95s; }
+.photo-item:nth-child(19) { animation-delay: 1s; }
+.photo-item:nth-child(20) { animation-delay: 1.05s; }
+
+@keyframes photoFadeInScale {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .photo-item:hover {
@@ -462,13 +632,36 @@
     justify-content: center;
     z-index: 1000;
     padding: 20px;
+    /* 模态框进入动画 */
+    animation: modalFadeIn 0.3s ease-out;
 }
 
-.modal-content {
-    position: relative;
-    max-width: 90vw;
-    max-height: 90vh;
-    text-align: center;
+/* 模态框动画 */
+@keyframes modalFadeIn {
+    0% {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
+    100% {
+        opacity: 1;
+        backdrop-filter: blur(5px);
+    }
+}
+
+/* 模态框退出动画 */
+.photo-modal.modal-exit {
+    animation: modalFadeOut 0.3s ease-in forwards;
+}
+
+@keyframes modalFadeOut {
+    0% {
+        opacity: 1;
+        backdrop-filter: blur(5px);
+    }
+    100% {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+    }
 }
 
 .modal-content {
@@ -479,6 +672,20 @@
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    /* 模态框内容进入动画 */
+    animation: modalContentZoomIn 0.4s ease-out;
+}
+
+/* 模态框内容动画 */
+@keyframes modalContentZoomIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 .modal-content img {
@@ -519,6 +726,20 @@
 .detail-footer {
     padding: 40px 20px;
     text-align: center;
+    /* 底部操作区进入动画 */
+    animation: footerSlideUp 0.8s ease-out 0.6s both;
+}
+
+/* 底部操作区进入动画 */
+@keyframes footerSlideUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .footer-actions {
@@ -534,6 +755,26 @@
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
+    /* 按钮进入动画 */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: buttonFadeInUp 0.5s ease-out forwards;
+}
+
+/* 按钮交错动画 */
+.btn:nth-child(1) { animation-delay: 0.7s; }
+.btn:nth-child(2) { animation-delay: 0.8s; }
+.btn:nth-child(3) { animation-delay: 0.9s; }
+
+@keyframes buttonFadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .btn-primary {
@@ -564,6 +805,8 @@
     .navigation-header {
         padding: 12px 15px;
         background: linear-gradient(135deg, #d32f2f 0%, #c62828 50%, #b71c1c 100%);
+        /* 移动端减少动画延迟 */
+        animation-duration: 0.4s;
     }
     
     .back-btn {
@@ -579,9 +822,44 @@
         box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
     }
     
+    /* 移动端减少动画复杂度 */
+    .detail-template {
+        animation-duration: 0.4s;
+    }
+    
     .detail-banner {
         height: 300px;
+        animation-duration: 0.5s;
     }
+    
+    .content-tabs {
+        animation-duration: 0.4s;
+        animation-delay: 0.2s;
+    }
+    
+    .detail-content {
+        animation-duration: 0.5s;
+        animation-delay: 0.3s;
+    }
+    
+    /* 移动端照片动画优化 */
+    .photo-item {
+        animation-duration: 0.5s;
+    }
+    
+    /* 移动端减少交错延迟 */
+    .photo-item:nth-child(n) {
+        animation-delay: calc(0.05s * var(--item-index, 1));
+    }
+    
+    /* 移动端简化按钮动画 */
+    .btn {
+        animation-duration: 0.4s;
+    }
+    
+    .btn:nth-child(1) { animation-delay: 0.5s; }
+    .btn:nth-child(2) { animation-delay: 0.55s; }
+    .btn:nth-child(3) { animation-delay: 0.6s; }
     
     .detail-title {
         font-size: 2rem;
@@ -603,6 +881,7 @@
     .document-card {
         flex-direction: column;
         text-align: center;
+        animation-duration: 0.4s;
     }
     
     .photos-grid {
@@ -637,5 +916,32 @@
         max-width: 95vw;
         max-height: 95vh;
         margin: 10px;
+    }
+}
+
+/* 可访问性：为偏好减少动画的用户提供支持 */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .detail-template,
+    .detail-banner,
+    .content-tabs,
+    .detail-content,
+    .navigation-header,
+    .document-card,
+    .photo-item,
+    .detail-footer,
+    .btn,
+    .photo-modal,
+    .modal-content {
+        animation: none !important;
+        transition: none !important;
     }
 }

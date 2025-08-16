@@ -5,16 +5,11 @@
     height: 400px;
     margin: 20px 0;
     
-    /* 使用绝对定位确保完全占满屏幕宽度 */
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    /* 简化定位方式，确保箭头定位参考点正确 */
+    margin-left: calc(-50vw + 50%);
     
     border-radius: 0;
-    overflow: hidden;
-    /* 移除box-shadow如果你不想要阴影 */
-    /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); */
+    overflow: visible; /* 改为visible确保箭头不被裁剪 */
     perspective: 1000px;
 }
 
@@ -22,6 +17,7 @@
     position: relative;
     width: 100%;
     height: 100%;
+    overflow: hidden; /* 在slides-container上控制溢出 */
     transform-style: preserve-3d; /* 保持3D效果 */
 }
 
@@ -124,54 +120,64 @@
     font-size: 1rem;
 }
 
-/* 导航箭头 */
+/* 导航箭头 - 重新定位到底部指示器左右两侧 */
 .nav-btn {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
-    width: 60px; /* 增大按钮 */
-    height: 60px;
+    bottom: 20px; /* 下移10px */
+    transform: none; /* 移除垂直居中的变换 */
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    width: 50px; /* 稍微缩小以适配底部布局 */
+    height: 50px;
     border-radius: 50%;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    z-index: 10;
+    z-index: 1000;
+    opacity: 0.9;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .nav-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-50%) scale(1.1);
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 1);
+    opacity: 1;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 .nav-btn span {
     color: white;
-    font-size: 28px; /* 增大箭头 */
+    font-size: 24px; /* 适配较小的按钮 */
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    line-height: 1;
 }
 
 .prev-btn {
-    left: 30px; /* 增加边距 */
+    left: calc(50% - 200px); /* 增大间距，从120px改为200px */
 }
 
 .next-btn {
-    right: 30px; /* 增加边距 */
+    right: calc(50% - 200px); /* 增大间距，从120px改为200px */
 }
 
-/* 底部指示器 */
+/* 确保箭头在不同状态下都可见 */
+.rolling-display:hover .nav-btn {
+    opacity: 1; /* 轮播区域悬浮时箭头完全显示 */
+}
+
+/* 底部指示器 - 为左右箭头留空间 */
 .indicators {
     position: absolute;
-    bottom: 30px; /* 增加底部边距 */
+    bottom: 20px; /* 保持与箭头同一水平线 */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    gap: 12px; /* 增大间距 */
+    gap: 12px;
     z-index: 10;
+    padding: 0 100px; /* 增大内边距以配合更宽的箭头间距 */
 }
 
 .indicator {
@@ -250,12 +256,10 @@
 .nav-btn {
     z-index: 15;
     pointer-events: auto;
-    transition: all 0.3s ease;
 }
 
 .nav-btn:hover {
     background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-50%) scale(1.1);
 }
 
 .indicators {
@@ -284,5 +288,31 @@
     
     .slide.active:hover {
         transform: translateX(-50%) translateZ(0) scale(1.01) !important;
+    }
+    
+    /* 移动端箭头样式调整 - 保持在底部 */
+    .nav-btn {
+        width: 40px; /* 移动端更小 */
+        height: 40px;
+        background: rgba(255, 255, 255, 0.9);
+        opacity: 1;
+        bottom: 15px; /* 下移，与桌面端保持相对位置 */
+    }
+    
+    .nav-btn span {
+        font-size: 18px; /* 移动端稍小的字体 */
+    }
+    
+    .prev-btn {
+        left: calc(50% - 100px); /* 移动端也增大间距 */
+    }
+    
+    .next-btn {
+        right: calc(50% - 100px); /* 移动端也增大间距 */
+    }
+    
+    .indicators {
+        padding: 0 80px; /* 移动端相应调整内边距 */
+        bottom: 15px; /* 保持与箭头同一水平线 */
     }
 }

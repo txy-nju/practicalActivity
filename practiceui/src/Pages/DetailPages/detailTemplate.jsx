@@ -18,7 +18,17 @@ function DetailTemplate({
     const [selectedPhoto, setSelectedPhoto] = useState(null);
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
     const [currentVersionType, setCurrentVersionType] = useState('preview');
+    const [isExiting, setIsExiting] = useState(false); // 添加退出状态
     const navigate = useNavigate(); // 添加导航钩子
+
+    // 处理返回按钮点击 - 添加退出动画
+    const handleBackClick = () => {
+        setIsExiting(true);
+        // 等待动画完成后再导航
+        setTimeout(() => {
+            navigate('/');
+        }, 400); // 与CSS动画时间匹配
+    };
 
     // 格式化时间
     const formatTime = (timeString) => {
@@ -65,12 +75,12 @@ function DetailTemplate({
     const currentVersion = currentVideo ? getCurrentVersion(currentVideo) : null;
 
     return (
-        <div className="detail-template">
+        <div className={`detail-template ${isExiting ? 'page-exit' : ''}`}>
             {/* 添加返回按钮 */}
             <div className="navigation-header">
                 <button 
                     className="back-btn"
-                    onClick={() => navigate('/')}
+                    onClick={handleBackClick}
                 >
                     ← 返回首页
                 </button>

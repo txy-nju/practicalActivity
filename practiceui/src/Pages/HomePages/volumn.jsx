@@ -45,8 +45,29 @@ function Volumn() {
                     title: '靖宇陵园',
                     description: '纪念抗日民族英雄杨靖宇将军，缅怀革命先烈的重要纪念场所',
                     achievements: '每年举办多场纪念活动，成为爱国主义教育和革命传统教育的重要基地',
-                    path: null, // 暂时没有对应组件
+                    path: '/detail/tonghua/jingyvlingyuan',
                     date: '08/12'
+                }
+            ]
+        },
+        {
+            category: '白山红色文化资源',
+            resources: [
+                {
+                    id: 1,
+                    title: '白山市杨靖宇烈士陵园暨东北抗日联军纪念馆',
+                    description: '缅怀革命先烈，传承红色基因的重要场所',
+                    achievements: '每年接待游客超过50万人次，成为爱国主义教育的重要基地',
+                    path: '/detail/baishan/jingyvlieshi',
+                    date: '08/15'
+                },
+                {
+                    id: 2,
+                    title: '白山市四保临江战役纪念馆',
+                    description: '展示白山松水地区丰富的红色文化和革命历史',
+                    achievements: '收藏大量珍贵文物，定期举办红色文化展览',
+                    path: '/detail/baishan/sibao',
+                    date: '08/20'
                 }
             ]
         }

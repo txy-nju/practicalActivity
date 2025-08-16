@@ -5,6 +5,8 @@ import weiman from '../../assets/rollingPicture/weiman.webp';
 import lunxian from '../../assets/rollingPicture/lunxian.webp';
 import jingyvganbu from '../../assets/rollingPicture/jingyvganbu.jpg';
 import jingyvlinyuan from '../../assets/rollingPicture/jingyvlinyuan.webp';
+import jingyvlieshi from '../../assets/rollingPicture/jingyvlieshi.webp';
+import sibao from '../../assets/rollingPicture/sibao.webp';
 
 function RollingDisplay() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -38,7 +40,21 @@ function RollingDisplay() {
             image: jingyvlinyuan,
             title: '靖宇陵园',
             subtitle: '缅怀革命先烈',
-            path: null // 暂时不跳转
+            path: '/detail/tonghua/jingyvlingyuan'
+        },
+        {
+            id: 5,
+            image: jingyvlieshi,
+            title: '白山杨靖宇烈士陵园',
+            subtitle: '追忆革命先烈的脚步',
+            path: '/detail/baishan/jingyvlieshi'
+        },
+        {
+            id: 6,
+            image: sibao,
+            title: '四保临江战役纪念馆',
+            subtitle: '红色教育基地',
+            path: '/detail/baishan/sibao'
         }
     ];
 

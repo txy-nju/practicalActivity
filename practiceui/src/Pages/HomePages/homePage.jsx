@@ -10,10 +10,6 @@ function HomePage() {
             <Header />
             <RollingDisplay />
             <Volumn />
-            <main className="main-content">
-                <h2>欢迎来到首页</h2>
-                <p>这里是首页的内容</p>
-            </main>
         </div>
     );
 }

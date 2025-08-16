@@ -4,6 +4,9 @@ import HomePage from './Pages/HomePages/homePage';
 import WeiMan from './Pages/DetailPages/ChangChun/WeiMan';
 import LunXian from './Pages/DetailPages/ChangChun/LunXian';
 import JingYvGanBu from './Pages/DetailPages/TongHua/JingYvGanBu';
+import JingYvLingYuan from './Pages/DetailPages/TongHua/JingYvLingYuan';
+import JingYvLieShi from './Pages/DetailPages/BaiShan/JingYvLieShi';
+import SiBao from './Pages/DetailPages/BaiShan/SiBao';
 import './App.css';
 
 function App() {
@@ -20,7 +23,12 @@ function App() {
           
           {/* 通化地区详情页路由 */}
           <Route path="/detail/tonghua/jingyvganbu" element={<JingYvGanBu />} />
-          
+          <Route path="/detail/tonghua/jingyvlingyuan" element={<JingYvLingYuan />} />
+
+          {/* 白山地区详情页路由 */}
+          <Route path="/detail/baishan/jingyvlieshi" element={<JingYvLieShi />} />
+          <Route path="/detail/baishan/sibao" element={<SiBao />} />
+
           {/* 404页面 - 可选 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
