@@ -26,17 +26,27 @@ sc\practice\practiceui\src\Pages\HomePages\volumn.css */
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
+    /* 添加点击反馈动画 */
+    transform: scale(1);
 }
 
 .tab-button:hover {
     color: #007bff;
     background: rgba(0, 123, 255, 0.05);
+    transform: translateY(-1px);
+}
+
+.tab-button:active {
+    transform: translateY(0) scale(0.98);
+    transition: transform 0.1s ease;
 }
 
 .tab-button.active {
     color: #007bff;
     background: #fff;
     font-weight: 600;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
 }
 
 .tab-button.active::after {
@@ -47,17 +57,82 @@ sc\practice\practiceui\src\Pages\HomePages\volumn.css */
     right: 0;
     height: 3px;
     background: #007bff;
+    /* 添加下划线动画 */
+    animation: underlineExpand 0.3s ease-out;
+}
+
+/* 下划线展开动画 */
+@keyframes underlineExpand {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
+    }
 }
 
 /* 新闻内容 */
 .news-content {
     padding: 20px;
+    position: relative;
+    overflow: hidden;
+    /* 设置最小高度以避免动画时的布局跳动 */
+    min-height: 400px;
+}
+
+/* 内容切换动画容器 */
+.content-wrapper {
+    animation: contentFadeIn 0.5s ease-out;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 内容淡入动画 */
+@keyframes contentFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 内容淡出动画 */
+.content-wrapper.fade-exit {
+    animation: contentFadeOut 0.3s ease-in forwards;
+}
+
+@keyframes contentFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
 }
 
 .news-list {
     list-style: none;
     margin: 0;
     padding: 0;
+    /* 为列表项添加交错动画 */
+    animation: listSlideIn 0.6s ease-out;
+}
+
+/* 列表滑入动画 */
+@keyframes listSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .news-item {
@@ -67,6 +142,29 @@ sc\practice\practiceui\src\Pages\HomePages\volumn.css */
     padding: 12px 0;
     border-bottom: 1px solid #f1f3f4;
     transition: background-color 0.2s ease;
+    /* 为每个新闻项添加进入动画 */
+    opacity: 0;
+    transform: translateY(15px);
+    animation: newsItemFadeIn 0.4s ease-out forwards;
+}
+
+/* 新闻项交错动画延迟 */
+.news-item:nth-child(1) { animation-delay: 0.1s; }
+.news-item:nth-child(2) { animation-delay: 0.2s; }
+.news-item:nth-child(3) { animation-delay: 0.3s; }
+.news-item:nth-child(4) { animation-delay: 0.4s; }
+.news-item:nth-child(5) { animation-delay: 0.5s; }
+
+/* 新闻项淡入动画 */
+@keyframes newsItemFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .news-item.clickable:hover {
@@ -83,6 +181,57 @@ sc\practice\practiceui\src\Pages\HomePages\volumn.css */
     border-bottom: none;
 }
 
+/* 添加加载状态动画 */
+.content-loading {
+    opacity: 0.6;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* 添加标签间的分隔线动画 */
+.tab-navigation::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e9ecef;
+    z-index: 1;
+}
+
+/* 优化悬停效果 */
+.news-item.clickable:hover {
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    margin: 0 -10px;
+    padding-left: 22px;
+    padding-right: 22px;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* 添加平滑的颜色过渡 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 为资源成果框添加动画 */
+.resource-achievements {
+    color: #555;
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 8px 12px;
+    background: #f8f9fa;
+    border-radius: 4px;
+    border-left: 3px solid #dc3545;
+    /* 添加动画效果 */
+    transform: translateX(0);
+    transition: all 0.3s ease;
+}
+
+.news-item.clickable:hover .resource-achievements {
+    background: #e3f2fd;
+    border-left-color: #007bff;
+    transform: translateX(5px);
+}
 /* 红色文化资源专用样式 */
 .resource-content {
     flex: 1;
@@ -178,17 +327,46 @@ sc\practice\practiceui\src\Pages\HomePages\volumn.css */
     .tab-button {
         padding: 12px 10px;
         font-size: 14px;
+        /* 移动端减少动画强度 */
+        transition: all 0.2s ease;
+    }
+    
+    .tab-button:hover {
+        transform: none; /* 移动端不使用hover变换 */
+    }
+    
+    .tab-button.active {
+        transform: none;
+        box-shadow: none;
     }
     
     .news-content {
         padding: 15px;
+        min-height: 300px; /* 移动端减少最小高度 */
+    }
+    
+    /* 移动端简化动画 */
+    .content-wrapper {
+        animation-duration: 0.3s;
+    }
+    
+    .news-list {
+        animation-duration: 0.4s;
     }
     
     .news-item {
         padding: 15px 0;
         flex-direction: column;
         align-items: flex-start;
+        /* 移动端减少动画延迟 */
+        animation-duration: 0.3s;
     }
+    
+    .news-item:nth-child(1) { animation-delay: 0.05s; }
+    .news-item:nth-child(2) { animation-delay: 0.1s; }
+    .news-item:nth-child(3) { animation-delay: 0.15s; }
+    .news-item:nth-child(4) { animation-delay: 0.2s; }
+    .news-item:nth-child(5) { animation-delay: 0.25s; }
     
     .news-main {
         margin-bottom: 8px;
@@ -210,10 +388,39 @@ sc\practice\practiceui\src\Pages\HomePages\volumn.css */
     .resource-achievements {
         font-size: 12px;
         margin-top: 8px;
+        /* 移动端简化动画 */
+        transition: background 0.2s ease;
+    }
+    
+    .news-item.clickable:hover .resource-achievements {
+        transform: none; /* 移动端不使用位移动画 */
     }
     
     .news-date {
         margin-left: 18px;
         font-size: 11px;
+    }
+}
+
+/* 可访问性：为偏好减少动画的用户提供支持 */
+@media (prefers-reduced-motion: reduce) {
+    .content-wrapper,
+    .news-list,
+    .news-item,
+    .tab-button,
+    .resource-achievements {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .tab-button:hover,
+    .tab-button.active,
+    .news-item.clickable:hover {
+        transform: none !important;
+    }
+    
+    .news-item {
+        opacity: 1 !important;
+        transform: none !important;
     }
 }

@@ -4,6 +4,8 @@ import './volumn.css';
 
 function Volumn() {
     const [activeTab, setActiveTab] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [contentKey, setContentKey] = useState(0); // 用于强制重新渲染动画
     const navigate = useNavigate();
     
     // 红色文化资源数据
@@ -74,7 +76,16 @@ function Volumn() {
     ];
     
     const handleTabClick = (index) => {
-        setActiveTab(index);
+        if (index === activeTab) return; // 如果点击的是当前标签，不执行动画
+        
+        setIsAnimating(true);
+        
+        // 添加短暂延迟以显示切换动画
+        setTimeout(() => {
+            setActiveTab(index);
+            setContentKey(prev => prev + 1); // 强制重新渲染以触发动画
+            setIsAnimating(false);
+        }, 150); // 延迟时间与CSS动画时间匹配
     };
     
     const handleResourceClick = (resource) => {
@@ -100,36 +111,38 @@ function Volumn() {
             
             {/* 红色文化资源列表 */}
             <div className="news-content">
-                <ul className="news-list">
-                    {cultureData[activeTab].resources.map((item) => (
-                        <li 
-                            key={item.id} 
-                            className={`news-item ${item.path ? 'clickable' : ''}`}
-                            onClick={() => handleResourceClick(item)}
-                            style={{ 
-                                cursor: item.path ? 'pointer' : 'default',
-                                opacity: item.path ? 1 : 0.7
-                            }}
-                        >
-                            <div className="news-main">
-                                <span className="news-dot"></span>
-                                <div className="resource-content">
-                                    <div className="resource-title">
-                                        {item.title}
-                                        {item.path && <span className="link-indicator">→</span>}
-                                    </div>
-                                    <div className="resource-description">
-                                        {item.description}
-                                    </div>
-                                    <div className="resource-achievements">
-                                        <strong>主要成果：</strong>{item.achievements}
+                <div key={contentKey} className="content-wrapper">
+                    <ul className="news-list">
+                        {cultureData[activeTab].resources.map((item) => (
+                            <li 
+                                key={item.id} 
+                                className={`news-item ${item.path ? 'clickable' : ''}`}
+                                onClick={() => handleResourceClick(item)}
+                                style={{ 
+                                    cursor: item.path ? 'pointer' : 'default',
+                                    opacity: item.path ? 1 : 0.7
+                                }}
+                            >
+                                <div className="news-main">
+                                    <span className="news-dot"></span>
+                                    <div className="resource-content">
+                                        <div className="resource-title">
+                                            {item.title}
+                                            {item.path && <span className="link-indicator">→</span>}
+                                        </div>
+                                        <div className="resource-description">
+                                            {item.description}
+                                        </div>
+                                        <div className="resource-achievements">
+                                            <strong>主要成果：</strong>{item.achievements}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <span className="news-date">{item.date}</span>
-                        </li>
-                    ))}
-                </ul>
+                                <span className="news-date">{item.date}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         </div>
     );

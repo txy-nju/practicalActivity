@@ -1,0 +1,19 @@
+{
+  "name": "dongbei-hongse-wenhua",
+  "version": "1.0.0",
+  "description": "东北红色文化网站 - 完整打包版本",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "install-deps": "cd practiceui && npm install",
+    "build": "cd practiceui && npm run build",
+    "dev": "cd practiceui && npm run dev"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "open": "^8.4.0"
+  },
+  "keywords": ["红色文化", "东北", "网站"],
+  "author": "Your Name",
+  "license": "MIT"
+}
